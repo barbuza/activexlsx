@@ -1,0 +1,26 @@
+<%-
+
+columns = active_admin_config.csv_builder.columns
+package = Axlsx::Package.new
+package.workbook.add_worksheet(:name => controller.xlsx_worksheet_name) do |sheet|
+  sheet.add_row columns.map(&:name)
+  collection.each do |resource|
+    row = columns.map do |column|
+      call_method_or_proc_on resource, column.data
+    end
+    sheet.add_row row
+  end
+end
+
+begin
+  filename = controller.xlsx_filename
+  temp = Tempfile.new filename
+  package.serialize temp.path
+  xlsx_output = File.read temp.path
+ensure
+  temp.close
+  temp.unlink
+end
+
+%>
+<%= xlsx_output.html_safe %>
