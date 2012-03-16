@@ -1,5 +1,7 @@
 <%-
 
+require "axlsx"
+
 columns = active_admin_config.csv_builder.columns
 package = Axlsx::Package.new
 package.workbook.add_worksheet(:name => controller.xlsx_worksheet_name) do |sheet|

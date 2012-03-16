@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = "activexlsx"
-  s.version       = "0.0.1"
+  s.version       = "0.0.2"
   s.platform      = Gem::Platform::RUBY
   s.author        = "Viktor Kotseruba"
   s.summary       = "adds xlsx download option to activeadmin index pages"
